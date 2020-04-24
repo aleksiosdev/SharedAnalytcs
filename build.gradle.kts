@@ -25,17 +25,20 @@ repositories {
 }
 
  publishing {
-        publications {
-            create<MavenPublication>("SharedAnalytics") {
-                groupId = "org.gradle.analytics"
-                artifactId = "analyticsShared"
-                version = "1.0"
-
-                // from(components["java"])
-            }
+    publications {
+        create<MavenPublication>("SharedAnalytics") {
+            groupId = "org.gradle.analytics"
+            artifactId = "analyticsShared"
+            version = "1.0"
         }
     }
-
+    repositories {
+        maven {
+            name = "SharedAnalytics"
+            url = uri("https://maven.pkg.github.com/aleksiosdev/SharedAnalytcs")
+        }
+    }
+}
 
 kotlin {
     cocoapods {
