@@ -2,10 +2,12 @@ Pod::Spec.new do |spec|
     spec.name                     = 'SharedAnalytics'
     spec.version                  = '1.0.0'
     spec.homepage                 = 'Link to a Kotlin/Native module homepage'
-    spec.source                   = { :git => "Not Published", :tag => "Cocoapods/#{spec.name}/#{spec.version}" }
+    spec.source                   = { :git => "https://github.com/aleksiosdev/SharedAnalytcs.git", :tag => "release/#{spec.version}" }
     spec.authors                  = ''
     spec.license                  = ''
     spec.summary                  = 'Shared module for Android and iOS'
+    spec.platform                 = :ios
+    spec.preserve_paths           = "**/*.*"
 
     spec.static_framework         = true
     spec.vendored_frameworks      = "build/cocoapods/framework/SharedAnalytics.framework"
