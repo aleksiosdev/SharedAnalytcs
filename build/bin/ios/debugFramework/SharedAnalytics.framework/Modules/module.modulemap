@@ -1,6 +1,0 @@
-framework module SharedAnalytics {
-    umbrella header "SharedAnalytics.h"
-
-    export *
-    module * { export * }
-}

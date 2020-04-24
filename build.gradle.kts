@@ -15,6 +15,7 @@ plugins {
     kotlin("multiplatform") version "1.3.72"
     id("org.jetbrains.kotlin.native.cocoapods") version "1.3.72"
     kotlin("plugin.serialization") version "1.3.72"
+    id("maven-publish")
 }
 
 repositories {
@@ -22,6 +23,18 @@ repositories {
     google()
     jcenter()
 }
+
+ publishing {
+        publications {
+            create<MavenPublication>("SharedAnalytics") {
+                groupId = "org.gradle.analytics"
+                artifactId = "analyticsShared"
+                version = "1.0"
+
+                // from(components["java"])
+            }
+        }
+    }
 
 
 kotlin {
@@ -65,5 +78,6 @@ kotlin {
 
     sourceSets["androidMain"].dependencies {
         implementation("org.jetbrains.kotlin:kotlin-stdlib")
+        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-native:$coroutinesVersion")
     }
 }
