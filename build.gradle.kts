@@ -1,22 +1,21 @@
-import org.jetbrains.kotlin.gradle.plugin.mpp.Framework
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
-val kotlinVersion = "1.3.72"
-val ktorVersion = "1.3.2"
-val serializationVersion = "0.20.0"
-val coroutinesVersion = "1.3.3"
-val navigationVersion = "2.2.0-rc04"
-val sqlDelightVersion = "1.3.0"
-
 plugins {
-    kotlin("multiplatform") version "1.3.72"
-    id("org.jetbrains.kotlin.native.cocoapods") version "1.3.72"
-    kotlin("plugin.serialization") version "1.3.72"
+    val kotlinVersion = "1.3.72"
+
+    kotlin("multiplatform") version "$kotlinVersion"
+    kotlin("native.cocoapods") version "$kotlinVersion"
+    kotlin("plugin.serialization") version "$kotlinVersion"
+
     id("maven-publish")
 }
 
-group = "org.gradle.analytics"
+val ktorVersion = "1.3.2"
+val artifactId = "SharedAnalytics"
+
+group = "org.manychat.analytics"
 version = "1.1.1"
+
 
 repositories {
     mavenCentral()
@@ -24,7 +23,7 @@ repositories {
     jcenter()
 }
 
- publishing {
+publishing {
     repositories {
         maven {
             name = "SharedAnalytics"
@@ -59,7 +58,7 @@ kotlin {
 
     jvm("android") {
          mavenPublication { 
-            artifactId = "SharedAnalytics"
+            artifactId = "$artifactId"
         }
     }
 
@@ -67,10 +66,6 @@ kotlin {
         commonMain {
             dependencies {
                 implementation("org.jetbrains.kotlin:kotlin-stdlib-common")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-common:$coroutinesVersion")
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:$serializationVersion")
-                implementation("io.ktor:ktor-client-json:$ktorVersion")
-                implementation("io.ktor:ktor-client-serialization:$ktorVersion")
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
             }
         }
@@ -78,9 +73,6 @@ kotlin {
          val iosMain by getting {
             dependencies {
                 implementation("org.jetbrains.kotlin:kotlin-stdlib")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-native:$coroutinesVersion")
-                implementation("io.ktor:ktor-client-json-native:$ktorVersion")
-                implementation("io.ktor:ktor-client-serialization-native:$ktorVersion")
                 implementation("io.ktor:ktor-client-ios:$ktorVersion")
             }
         }
@@ -88,7 +80,6 @@ kotlin {
        val androidMain by getting {
             dependencies {
                 implementation("org.jetbrains.kotlin:kotlin-stdlib")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-native:$coroutinesVersion")
             }
         }
      }
