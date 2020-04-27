@@ -13,6 +13,9 @@ plugins {
 val ktorVersion = "1.3.2"
 val artifactId = "SharedAnalytics"
 
+val userName = "aleksiosdev"
+val githubToken = "700c778d3c8127d6b97ba8a36426ebf119eabfba"
+
 group = "org.manychat.analytics"
 version = "1.1.1"
 
@@ -29,8 +32,8 @@ publishing {
             name = "SharedAnalytics"
             url = uri("https://maven.pkg.github.com/aleksiosdev/SharedAnalytcs")
             credentials {
-                username = "aleksiosdev" ?: System.getenv("USERNAME")
-                password = "700c778d3c8127d6b97ba8a36426ebf119eabfba" ?: System.getenv("TOKEN")
+                username = System.getenv("USERNAME") ?: "$userName" 
+                password = System.getenv("TOKEN") ?: "$githubToken"
             }
         }
     }
